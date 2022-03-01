@@ -1,0 +1,21 @@
+@import '../../_seting.scss';
+
+.content-workspace{
+    height: 99%;
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+      -webkit-appearance: none;
+    }
+    &::-webkit-scrollbar:horizontal{
+      height:10px;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color:darken( $text_color,  15);
+      border-radius: 30px;
+    }
+   
+   
+    
+}

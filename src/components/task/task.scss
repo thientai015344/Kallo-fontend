@@ -1,0 +1,16 @@
+@import '../../_seting.scss';
+
+
+li {
+    margin: $mt-5 0 $mt-5 $mt-5 ;
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    line-height: $height-li;
+    padding: 5px 8px 3px 8px;
+    cursor: pointer;
+    .img-item-list{
+      display: block;
+      width: 100%;
+    }
+   }

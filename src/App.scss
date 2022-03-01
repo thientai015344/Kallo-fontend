@@ -1,28 +1,5 @@
+@import '../src/_seting.scss';
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-$background_color-header : #026AA7;
-$background_color-worspace : #1590d6;
-$background_color-scoll-x : #28aaf5;
-$text_color : #fff;
-$mtl-10 : 10px;
-$mt-5 : 5px;
-$pd-5 : 5px;
-$pd-10 : 10px;
-$pd-lef : 10px ;
-$px : 5px;
-$height-li: 24px;
-
-body {
-  margin: 0;
-  font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.3em;
-  color: $text_color;
-  
-
-
-}
 
 .App-kallo{
   height: 100vh;
@@ -30,93 +7,6 @@ body {
   grid-template-rows: 40px 50px 1fr;
   background-color: $background_color-worspace;
 
-  .navbar{
-    padding-left: 10px;
-    background-color: $background_color-header;
-    
-  }
-
-  .content-workspace{
-    height: 99%;
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: auto;
-    &::-webkit-scrollbar{
-      -webkit-appearance: none;
-    }
-    &::-webkit-scrollbar:horizontal{
-      height:10px;
-    }
-    &::-webkit-scrollbar-thumb{
-      background-color:darken( $text_color,  15);
-      border-radius: 30px;
-    }
-   
- 
-    .item-list-ul{
-     border-radius: $pd-5;
-      margin-left: $mtl-10;
-      height: calc(100% - #{$mt-5});
-      min-width: 270px;
-      display: block;
-      &:last-child {
-        margin-right:10px;
-      }
-     
-      >*{
-        background-color: rgb(245, 245, 245);
-    
-        color: #000;
-        padding: $pd-10;
-       
-      }
-
-      .brainstom{
-        border-top-left-radius: $pd-5;
-        border-top-right-radius: $pd-5;
-      }
-     
-      
-
-      ul{
-        overflow-y: auto;
-        max-height: calc(100% - 100px);
-        padding-left: 0;
-        margin: 0;
-        &::-webkit-scrollbar{
-          -webkit-appearance: none;
-        }
-        &::-webkit-scrollbar:vertical{
-          width: 11px;
-        }
-        &::-webkit-scrollbar-thumb{
-          background-color:darken( $text_color,  15);
-          border-radius: 30px;
-        }
-        li {
-         margin: $mt-5 0 $mt-5 $mt-5 ;
-         background-color: #fff;
-         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-         list-style: none;
-         line-height: $height-li;
-         padding: 5px 8px 3px 8px;
-         cursor: pointer;
-         .img-item-list{
-           display: block;
-           width: 100%;
-         }
-        }
-      }
-      .footerf{
-        border-bottom-left-radius: $pd-5;
-        border-bottom-right-radius: $pd-5;
-      }
-      
-    }
-    
-  }
-
-  
 
 }
 
