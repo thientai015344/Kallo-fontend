@@ -1,54 +1,21 @@
 import React from 'react'
 import './task.scss';
 
-export default function task() {
+export default function task(props) {
+        const {task} = props;
+        console.log('card', task);
   return (
     <>
         <li>
-                <img className="img-item-list" src="https://trello-backgrounds.s3.amazonaws.com/53baf533e697a982248cd73f/480x480/96406688eb291c869064290cfb9b0c80/shutterstock_134707556.jpg" alt=""/>
+                {
+                 <img className="img-item-list" src={task.cover} alt=""/>
+                }
+                ,
+                {task.title}
+        
         </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                work everyday
-        </li>
-        <li>
-                    work everyday
-        </li>
+        
+     
     </>
   )
 }

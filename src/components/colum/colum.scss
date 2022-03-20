@@ -3,7 +3,7 @@
  .item-list-ul{
     border-radius: $pd-5;
      margin-left: $mtl-10;
-     height: calc(100% - #{$mt-5});
+     max-height: calc(100% - #{$mt-5});
      min-width: 270px;
      width: 270px;
      box-shadow: -2px 0 13px 1px rgba(0, 0, 0, 0.5);
@@ -23,6 +23,7 @@
      .brainstom{
        border-top-left-radius: $pd-5;
        border-top-right-radius: $pd-5;
+       cursor: pointer;
      }
     
      
@@ -42,6 +43,25 @@
          background-color:darken( $text_color,  15);
          border-radius: 30px;
        }
+
+
+       .card-ghost{
+         transition: transform 0.18s ease;
+         transform: rotateZ(5deg);
+     
+      }
+
+      .card-ghost-drop{
+        transition: transform 0.18s ease-in-out;
+        transform: rotateZ(0deg);
+      }
+
+      .card-drop-placeholder{
+        background-color:rgba(150,150,200,0.1);
+        border: 1px dashed #abc;
+        margin: 5px;
+      }
+
     
      }
      .footerf{
@@ -50,3 +70,7 @@
      }
      
    }
+
+
+
+  
