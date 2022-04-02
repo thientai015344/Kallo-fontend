@@ -3,7 +3,7 @@
  .item-list-ul{
     border-radius: $pd-5;
      margin-left: $mtl-10;
-     max-height: calc(100% - #{$mt-5});
+     max-height: 510px;
      min-width: 270px;
      width: 270px;
      box-shadow: -2px 0 13px 1px rgba(0, 0, 0, 0.5);
@@ -16,7 +16,7 @@
        background-color: rgb(245, 245, 245);
    
        color: #000;
-       padding: $pd-10;
+       padding: $pd-5;
       
      }
 
@@ -30,8 +30,8 @@
 
      ul{
        overflow-y: auto;
-       max-height: calc(100% - 100px);
-       padding-left: 0;
+       max-height: 510px;
+       padding: 0;
        margin: 0;
        &::-webkit-scrollbar{
          -webkit-appearance: none;
@@ -51,6 +51,15 @@
      
       }
 
+      .form-add{
+            /* margin: 0 10px 0 11px; */
+            background-color: #fff;
+            width: 260px;
+            /* margin: -10px; */
+            max-width: 260px;
+            border-radius: 3px;
+      }
+
       .card-ghost-drop{
         transition: transform 0.18s ease-in-out;
         transform: rotateZ(0deg);
@@ -67,6 +76,20 @@
      .footerf{
        border-bottom-left-radius: $pd-5;
        border-bottom-right-radius: $pd-5;
+
+      .btn-addCard{
+        width: 100%;
+        border: none;
+        background-color: rgb(245, 245, 245);
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(224, 217, 217);
+          
+      }
+
+      }
+
      }
      
    }

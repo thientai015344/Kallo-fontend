@@ -21,7 +21,65 @@
         border: 1px dashed #abc;
         margin: 5px;
     }
+   .btn-addColumn{
+    margin:0 10px;
+    max-height: 40px;
+    font-size: 1rem;
+    border: none;
+    padding: 10px;
+    background-color: #67b9e8;
+    width: 260px;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+    &:hover {
+     opacity: 0.6;
+    }
+
+ }
    
+
+   .form-add {
+    
+    margin: 0 10px 0 11px;
+    background-color: #fff;
+    width: 260px;
+    max-width: 260px;
+    border-radius: 3px;
+
+
+    #add-clum {
+     height: 24px;
+     margin: 5px;
+     width: 94%;
+     border: 1px solid #67b9e8;
+     outline: 1px solid #67b9e8;
+    }
+
+     .btn-addgg {
+      margin: 5px;
+      border: none;
+      background-color: #318dc2;
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 4px;
+      border-radius: 3px;
+      cursor: pointer;
+  
+    }
+
+    button.btn.btn-cane {
+      border: none;
+      background-color: #fff;
+      cursor: pointer;
+      &:hover {
+        color: red
+       }
+  }
+}
+
+
+
    
     
 }

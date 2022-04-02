@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Draggable } from 'react-smooth-dnd';
+
 import './colum.scss'
 import Task from '../task/task.js'
 
@@ -23,8 +24,8 @@ export default function Colum(props) {
                     onDragEnd={e => console.log('drag end', e)}
                     onDrop={dropResult => onCardDrrop(column.id, dropResult)} 
                     getChildPayload={index => task[index]}
-                    dragClass="card-ghost"
-                    dropClass="card-ghost-drop"
+                    dragclassName="card-ghost"
+                    dropclassName="card-ghost-drop"
                     onDragEnter={()=>{
                     console.log('drag enter', column.id);   
                     }}
@@ -52,7 +53,30 @@ export default function Colum(props) {
                     )}
                   </Container>
                 </ul>
-                <footer className="footerf"> footer add nother card </footer>
+                <form >
+
+                        <div className="form-add">
+                      
+                          <textarea  type="text"
+                          cols={5}
+                          //  ref={newclumiputref} 
+                          // value={newtitlecolum} name="title" 
+                          // onChange={event => setnewtitlecolum(event.target.value)} 
+                          // onKeyDown={e => e.key === 'Enter' && addcolumn()}
+                          placeholder="nhập tiêu đề cho thẻ này !"
+                           className="form-add"
+                            id="add-clum"/>
+                          <button className="btn btn-addgg"type="button">Thêm thẻ</button>  
+                          <button  className="btn btn-cane"type="button">hủy</button> 
+
+                        </div>
+                    </form>
+                <footer className="footerf">
+
+                
+                <button className="btn btn-addCard"type="button"><i>+    </i>   Thêm Thẻ</button>
+
+                </footer>
             </div>
 
         

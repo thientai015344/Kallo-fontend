@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useRef} from 'react'
 import { Container, Draggable } from 'react-smooth-dnd';
 import {applyDrag} from '../../unilities/dragDrop'
 import {isEmpty} from 'lodash'
@@ -7,10 +7,16 @@ import './boardContent.scss'
 import Colum from '../colum/Colum.js'
 
 
+
 export default function BoardContent() {
   
   const [board, setboard]= useState({})
   const [columns, setcolumns]= useState([])
+  const [opennewcolumn, setopennewcolumn]= useState(false)
+  const [newtitlecolum, setnewtitlecolum]= useState('')
+
+  const newclumiputref = useRef()
+
 
   useEffect(()=> {
     const booardFromDB = initialData.boards.find(board => board.id === 'board-1')
@@ -25,17 +31,39 @@ export default function BoardContent() {
       //setcolumns(mapOrder(booardFromDB.columns, booardFromDB.columnOrder, 'id'))
     }
   }, [])
+
+
+  useEffect(() => {
+    if(newclumiputref && newclumiputref.current){
+      newclumiputref.current.focus()
+      newclumiputref.current.select()
+    }
+  }, [opennewcolumn])
+
+
+
+
+
   if(isEmpty(board)){
     return <div className="notfound">board is a not found</div>
   }
 
+
+
+
   const onColumnDrop = (dropResult) => {
     console.log("dropResult", dropResult)
 
-    let newColunm = [...columns]
-    newColunm = applyDrag(newColunm, dropResult)
+    let newColunms = [...columns]
+    newColunms = applyDrag(newColunms, dropResult)
 
-    setcolumns(newColunm)
+    let newBoard = [...board]
+
+    newBoard.columnOrder = newColunms.map(c => c.id)
+    newBoard.columns = newColunms
+
+    setcolumns(newColunms)
+    setboard(newBoard)
 
   }
 
@@ -57,6 +85,49 @@ export default function BoardContent() {
    }
 
   }
+
+   const openaddcolum = () =>{
+
+    setopennewcolumn(!opennewcolumn)
+
+  }
+
+
+  const addcolumn = () =>{
+
+    console.log('dfrfgsd', newtitlecolum)
+    if(!newtitlecolum ){
+
+      newclumiputref.current.focus();
+
+    }
+
+
+      const addnewcolumn ={
+        id: Math.random().toString(36).substring(2, 5), //5 random character, will remove when we implement code aip 
+        boardId: board.id,
+        title: newtitlecolum.trim(),
+        cardOrder: [],
+        cards: []
+      }
+      let newColunms = [...columns]
+      newColunms.push(addnewcolumn)
+
+      
+  
+      setcolumns(newColunms)
+      setnewtitlecolum('')
+      setopennewcolumn(!opennewcolumn)
+  
+
+      
+    
+   
+    
+  }
+
+
+
   return (
     <>
          <div className="content-workspace">
@@ -85,9 +156,42 @@ export default function BoardContent() {
  
              )}
 
+           <div>
+                {!opennewcolumn && 
+                
+                
+                  <button onClick ={() => openaddcolum()} className="btn-addColumn"type="button"><i>+   </i>    add another column</button>
+                }
+
+
+                {opennewcolumn &&
+                    <form >
+
+                        <div className="form-add">
+                      
+                          <input  type="text" ref={newclumiputref} 
+                          value={newtitlecolum} name="title" 
+                          onChange={event => setnewtitlecolum(event.target.value)} 
+                          onKeyDown={e => e.key === 'Enter' && addcolumn()}
+                          placeholder="Nhập tiêu đề danh sách ...."
+                           className="form-add"
+                            id="add-clum"/>
+                          <button onClick ={() => addcolumn()} className="btn btn-addgg"type="button">Thêm danh sách</button>  
+                          <button onClick ={() => openaddcolum()} className="btn btn-cane"type="button">hủy</button> 
+
+                        </div>
+                    </form>
+                
+                }
+
+
+                    
+           </div>
            </Container>
         
       </div> 
+
+      
     </>
   )
 }
