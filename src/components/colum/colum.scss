@@ -16,7 +16,7 @@
        background-color: rgb(245, 245, 245);
    
        color: #000;
-       padding: $pd-5;
+       padding: $pd-10;
       
      }
 
@@ -24,6 +24,50 @@
        border-top-left-radius: $pd-5;
        border-top-right-radius: $pd-5;
        cursor: pointer;
+      display: flex;
+      .column-title{
+        flex: 90%;
+      }
+      .column-dropdown-action{
+        flex: 10%;
+
+        button.dropdown-btn{
+          letter-spacing: 2px;
+          &:hover{
+            background-color: darken($background_color-btn, 10);
+            border-color: darken($background_color-btn, 10);
+
+          }
+        }
+        
+
+        .dropdown-header.dropdown-header {
+          text-align: center;
+          background-color: #ccc;
+          margin-bottom: 10px;
+        }
+
+
+        .dropdown-item {
+          display: block;
+          width: 100%;
+          padding: 0.25rem 1rem;
+          clear: both;
+          margin: 5px 0!important;
+          font-weight: 400;
+          color: #212529;
+          text-align: inherit;
+          text-decoration: none;
+          white-space: nowrap;
+          background-color: transparent;
+          border: 0;
+
+          &:hover{
+            background-color: #ccc;
+          }
+        }
+      }
+
      }
     
      
@@ -51,14 +95,9 @@
      
       }
 
-      .form-add{
-            /* margin: 0 10px 0 11px; */
-            background-color: #fff;
-            width: 260px;
-            /* margin: -10px; */
-            max-width: 260px;
-            border-radius: 3px;
-      }
+     
+        
+
 
       .card-ghost-drop{
         transition: transform 0.18s ease-in-out;
@@ -73,6 +112,23 @@
 
     
      }
+
+     .form-addcard{
+ 
+       .form-addd{
+        margin: 0 auto;
+        background-color: #fff;
+        width: 260px;
+        max-width: 260px;
+        border-radius: 3px;
+        textarea#add-clum {
+          width: 254px;
+          height: 50px;
+      }
+        }
+     }
+
+
      .footerf{
        border-bottom-left-radius: $pd-5;
        border-bottom-right-radius: $pd-5;
@@ -84,15 +140,15 @@
         padding: 5px;
         cursor: pointer;
         &:hover {
-          background-color: rgb(224, 217, 217);
-          
-      }
+          background-color: rgb(224, 217, 217);  
+        }
 
       }
 
      }
      
    }
+   
 
 
 

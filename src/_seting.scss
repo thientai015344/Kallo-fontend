@@ -3,6 +3,7 @@
 $background_color-header : #026AA7;
 $background_color-worspace : #1590d6;
 $background_color-scoll-x : #28aaf5;
+$background_color-btn : #0d6efd;
 $text_color : #fff;
 $mtl-10 : 10px;
 $mt-5 : 5px;
@@ -12,6 +13,12 @@ $pd-lef : 10px ;
 $px : 5px;
 $height-li: 24px;
 
+
+button:active, button:focus {
+  outline:none !important;
+  box-shadow:none !important;
+}
+
 body {
   margin: 0;
   font-size: 14px;
@@ -20,5 +27,10 @@ body {
   color: $text_color;
   
 
+  form {
+    display: block;
+    margin-top: 0em;
+    padding: 0!important;
+  }
 
 }
