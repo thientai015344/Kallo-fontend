@@ -1,17 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Container, Draggable } from 'react-smooth-dnd';
 import { Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ConfirmModal from '../../common/ConfirmModal.js'
+import{  MODAL_ACTION_CONFIRM} from '../../unilities/constant.js'
+import { EditText } from 'react-edit-text';
+import 'react-edit-text/dist/index.css';
 import './colum.scss'
 import Task from '../task/task.js'
 
 
+
 export default function Colum(props) {
 
-  const {column , onCardDrrop} = props
+  const {column , onCardDrrop, onUpdateColumn} = props
+  const [columtitle , setcolumntitle] = useState(column.title)
   const task = column.cards
+  const [showconfirmModal, setshowconfirmModal] = useState(false)
+  const toggleShowconfirmModal = () => setshowconfirmModal(!showconfirmModal)
+  const handlesaveTitle =(value) => {
+    console.log('blur',value.value )
+  }
+  const onConfirmModal = (type) =>{
 
+    if(type === MODAL_ACTION_CONFIRM){
+      const newColunm ={
+         ...column,
+         _destroy: true,
+      }
+      onUpdateColumn(newColunm)
+    }
+    toggleShowconfirmModal()
+
+  }
+
+  const faHorseHead =(e) =>{
+    alert('ddđr')
+  }
 
   
   
@@ -20,7 +45,15 @@ export default function Colum(props) {
         <div className="item-list-ul" >
                 <header className="brainstom column-drag-handle">
                   <div className="column-title">
-                  {column.title} 
+                     
+                  
+                  <EditText
+                    name="textbox1"
+                    defaultValue={columtitle} 
+                    onChange={setcolumntitle}
+                    onSave={handlesaveTitle}
+                    onClick={faHorseHead}
+                   />
                   </div>
                   <div className="column-dropdown-action">
                   <Dropdown>
@@ -29,7 +62,7 @@ export default function Colum(props) {
                     <Dropdown.Menu>
                     <Dropdown.Header className="dropdown-header">Manipulation</Dropdown.Header>
                       <Dropdown.Item>Add card</Dropdown.Item>
-                      <Dropdown.Item>Remove column</Dropdown.Item>
+                      <Dropdown.Item onClick={toggleShowconfirmModal}>Remove column</Dropdown.Item>
                       <Dropdown.Item>Move all cards in the list..(beta)</Dropdown.Item>
                       <Dropdown.Item>Archive all cards in this column..(beta)</Dropdown.Item>
 
@@ -89,6 +122,7 @@ export default function Colum(props) {
                 <form className="form-addcard" >
 
                         <div className="form-addd">
+                          
                       
                           <textarea  type="text"
                           cols={5}
@@ -107,6 +141,16 @@ export default function Colum(props) {
                 <footer className="footerf">
                    <button className="btn btn-addCard"type="button"><i>+    </i>   Thêm Thẻ</button>
                 </footer>
+
+
+              <ConfirmModal 
+
+                show = {showconfirmModal}
+                onAction = {onConfirmModal}     
+                title="Remove column"
+                content={`are you sure you want to remove this ${column.title}? all related card will also be removed`}                   
+              />
+
             </div>
 
         

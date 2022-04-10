@@ -8,6 +8,7 @@
      width: 270px;
      box-shadow: -2px 0 13px 1px rgba(0, 0, 0, 0.5);
      display: block;
+     background-color: #fff;
      &:last-child {
        margin-right:10px;
      }
@@ -74,7 +75,7 @@
 
      ul{
        overflow-y: auto;
-       max-height: 510px;
+       max-height: 458px;
        padding: 0;
        margin: 0;
        &::-webkit-scrollbar{
@@ -114,17 +115,40 @@
      }
 
      .form-addcard{
+      border-bottom-left-radius: $pd-5;
+      border-bottom-right-radius: $pd-5;
  
        .form-addd{
+        border-bottom-left-radius: $pd-5;
+        border-bottom-right-radius: $pd-5;
         margin: 0 auto;
         background-color: #fff;
         width: 260px;
         max-width: 260px;
         border-radius: 3px;
         textarea#add-clum {
-          width: 254px;
+          width: 260px;
           height: 50px;
-      }
+          border: 1px solid #67b9e8;
+          outline: 1px solid #67b9e8;
+        }
+
+        button.btn.btn-addgg {
+          background-color: #3f7ade;
+          color: #fff;
+          margin: 5px 0;
+          &:hover{
+            background-color: darken(#3f7ade, 20);
+          }
+        }
+
+        button.btn.btn-cane {
+          margin-left: 10px;
+          &:hover{
+            background-color:rgb(244, 110, 110)
+          }
+        }
+      
         }
      }
 

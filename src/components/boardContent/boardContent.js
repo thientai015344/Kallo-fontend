@@ -8,6 +8,7 @@ import Colum from '../colum/Colum.js'
 
 
 
+
 export default function BoardContent() {
   
   const [board, setboard]= useState({})
@@ -57,13 +58,10 @@ export default function BoardContent() {
     let newColunms = [...columns]
     newColunms = applyDrag(newColunms, dropResult)
 
-    let newBoard = [...board]
-
-    newBoard.columnOrder = newColunms.map(c => c.id)
-    newBoard.columns = newColunms
+  
 
     setcolumns(newColunms)
-    setboard(newBoard)
+    setboard(board)
 
   }
 
@@ -94,15 +92,9 @@ export default function BoardContent() {
 
 
   const addcolumn = () =>{
-
-    console.log('dfrfgsd', newtitlecolum)
     if(!newtitlecolum ){
-
       newclumiputref.current.focus();
-
     }
-
-
       const addnewcolumn ={
         id: Math.random().toString(36).substring(2, 5), //5 random character, will remove when we implement code aip 
         boardId: board.id,
@@ -112,18 +104,30 @@ export default function BoardContent() {
       }
       let newColunms = [...columns]
       newColunms.push(addnewcolumn)
-
-      
-  
       setcolumns(newColunms)
       setnewtitlecolum('')
-      setopennewcolumn(!opennewcolumn)
-  
+      setopennewcolumn(!opennewcolumn)  
+  }
 
-      
-    
-   
-    
+  const onUpdateColumn =(newColumnToUpdate) =>{
+    const IdColumnUpdate = newColumnToUpdate.id;
+
+    let newColunms = [...columns]
+    const indexColumnToUpdate = newColunms.findIndex(i => i.id === IdColumnUpdate)
+    if( newColumnToUpdate._destroy) {
+      newColunms.splice(indexColumnToUpdate, 1)
+    }
+    else{
+      newColunms.splice(indexColumnToUpdate, 1 , newColumnToUpdate)
+
+    }
+    let newboard = [...board]
+    newboard.columnOrder = newColunms.map(c => c.id)
+    newboard.columns = newColunms
+
+    setcolumns(newColunms)
+    setboard(newboard)
+
   }
 
 
@@ -147,7 +151,7 @@ export default function BoardContent() {
               (
                 <Draggable key={index}>
 
-                  <Colum column={column} onCardDrrop={onCardDrrop}/>
+                  <Colum column={column} onCardDrrop={onCardDrrop} onUpdateColumn={onUpdateColumn} />
 
                 </Draggable>
 
