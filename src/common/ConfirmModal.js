@@ -6,7 +6,7 @@ export default function  ConfirmModal(props) {
 
     const {title, content, show, onAction} = props;
 
-    console.log('title', title)
+
 
     return (
       <>

@@ -121,12 +121,12 @@ export default function BoardContent() {
       newColunms.splice(indexColumnToUpdate, 1 , newColumnToUpdate)
 
     }
-    let newboard = [...board]
-    newboard.columnOrder = newColunms.map(c => c.id)
-    newboard.columns = newColunms
+
+    board.columnOrder = newColunms.map(c => c.id)
+    board.columns = newColunms
 
     setcolumns(newColunms)
-    setboard(newboard)
+    setboard(board)
 
   }
 
@@ -173,7 +173,7 @@ export default function BoardContent() {
 
                         <div className="form-add">
                       
-                          <input  type="text" ref={newclumiputref} 
+                          <input  type="text" autofocus ref={newclumiputref} 
                           value={newtitlecolum} name="title" 
                           onChange={event => setnewtitlecolum(event.target.value)} 
                           onKeyDown={e => e.key === 'Enter' && addcolumn()}

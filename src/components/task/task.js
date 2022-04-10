@@ -10,7 +10,7 @@ export default function task(props) {
                 {
                  <img className="img-item-list" src={task.cover} alt=""/>
                 }
-                ,
+                
                 {task.title}
         
         </li>

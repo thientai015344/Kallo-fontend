@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState , useRef} from 'react'
 import { Container, Draggable } from 'react-smooth-dnd';
 import { Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,16 +8,27 @@ import { EditText } from 'react-edit-text';
 import 'react-edit-text/dist/index.css';
 import './colum.scss'
 import Task from '../task/task.js'
+import {cloneDeep} from 'lodash'
 
 
 
 export default function Colum(props) {
-
+  const newclumiputref = useRef()
   const {column , onCardDrrop, onUpdateColumn} = props
   const [columtitle , setcolumntitle] = useState(column.title)
+  const [newtitlecard, setnewtitlecard]= useState('')
   const task = column.cards
   const [showconfirmModal, setshowconfirmModal] = useState(false)
   const toggleShowconfirmModal = () => setshowconfirmModal(!showconfirmModal)
+  const [opennewcard, setopennewcard]= useState(false)
+
+  useEffect(() => {
+    if(newclumiputref && newclumiputref.current){
+      newclumiputref.focus()
+      newclumiputref.current.select()
+    }
+  }, [opennewcard])
+
   const handlesaveTitle =(value) => {
     console.log('blur',value.value )
   }
@@ -34,8 +45,35 @@ export default function Colum(props) {
 
   }
 
-  const faHorseHead =(e) =>{
-    alert('ddđr')
+  const addtocard = () =>{
+    if(!newtitlecard ){
+      newclumiputref.current.focus();
+      return
+    }
+    const newCardToAdd ={
+      id : Math.random().toString(36).substring(2,5),
+      boardId: column.boardId,
+      columnId: column.id, 
+      title: newtitlecard.trim(),
+      cover: null
+    }
+ 
+    let newColunm = cloneDeep(column)
+    newColunm.cards.push(newCardToAdd)
+    newColunm.cardOrder.push(newCardToAdd.id)
+
+
+    onUpdateColumn(newColunm)
+    setnewtitlecard('')
+    setopennewcard(!opennewcard)
+
+
+  }
+
+
+
+  const showaddcard =() =>{
+    setopennewcard(!opennewcard)
   }
 
   
@@ -52,7 +90,7 @@ export default function Colum(props) {
                     defaultValue={columtitle} 
                     onChange={setcolumntitle}
                     onSave={handlesaveTitle}
-                    onClick={faHorseHead}
+                 
                    />
                   </div>
                   <div className="column-dropdown-action">
@@ -119,28 +157,37 @@ export default function Colum(props) {
                     
                   </Container>
                 </ul>
-                <form className="form-addcard" >
+                {opennewcard && 
+                
+                    <form className="form-addcard" >
 
                         <div className="form-addd">
                           
                       
                           <textarea  type="text"
                           cols={5}
-                          //  ref={newclumiputref} 
-                          // value={newtitlecolum} name="title" 
-                          // onChange={event => setnewtitlecolum(event.target.value)} 
-                          // onKeyDown={e => e.key === 'Enter' && addcolumn()}
+                         //  ref={newclumiputref} 
+                          value={newtitlecard} name="title" 
+                          onChange={event => setnewtitlecard(event.target.value)} 
+                          onKeyDown={e => e.key === 'Enter' && addtocard()}
                           placeholder="nhập tiêu đề cho thẻ này !"
                            className="form-addd"
                             id="add-clum"/>
-                          <button className="btn btn-addgg"type="button">Thêm thẻ</button>  
-                          <button  className="btn btn-cane"type="button">hủy</button> 
+                          <button  onClick ={() => addtocard()} className="btn btn-addgg"type="button">Thêm thẻ</button>  
+                          <button onClick={showaddcard}  className="btn btn-cane"type="button">hủy</button> 
 
                         </div>
                     </form>
-                <footer className="footerf">
-                   <button className="btn btn-addCard"type="button"><i>+    </i>   Thêm Thẻ</button>
-                </footer>
+                
+                }
+                {!opennewcard && 
+
+                  <footer className="footerf">
+                    <button onClick={showaddcard} className="btn btn-addCard"type="button"><i>+    </i>   Thêm Thẻ</button>
+                  </footer>
+                
+                
+                }
 
 
               <ConfirmModal 
